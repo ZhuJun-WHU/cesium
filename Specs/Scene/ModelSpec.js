@@ -2824,7 +2824,6 @@ describe(
       })
         .then(function (m) {
           // Get the rendered color of the model before textures are loaded
-
           m.zoomTo();
           expect(scene).toRenderAndCall(function (rgba) {
             expect(rgba).not.toEqual([0, 0, 0, 255]);
@@ -2832,12 +2831,17 @@ describe(
           });
 
           model = m;
+
+          // Render at least once to initialize
+          scene.renderForSpecs();
+        })
+        .then(function () {
           return pollToPromise(
             function () {
               // Render scene to progressively load textures
               scene.renderForSpecs();
               // Textures have finished loading
-              return m.pendingTextureLoads === 0;
+              return model.pendingTextureLoads === 0;
             },
             { timeout: 10000 }
           );

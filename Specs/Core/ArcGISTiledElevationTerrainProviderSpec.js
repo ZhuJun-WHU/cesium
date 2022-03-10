@@ -319,7 +319,9 @@ describe("Core/ArcGISTiledElevationTerrainProvider", function () {
       url: "made/up/url",
     });
     expect(provider.hasWaterMask).toBe(false);
-    return provider.readyPromise.catch(function (e) {});
+    return provider.readyPromise.catch(function (error) {
+      expect(error).toBeInstanceOf(RuntimeError);
+    });
   });
 
   it("is not ready immediately", function () {
@@ -327,7 +329,9 @@ describe("Core/ArcGISTiledElevationTerrainProvider", function () {
       url: "made/up/url",
     });
     expect(provider.ready).toBe(false);
-    return provider.readyPromise.catch(function (e) {});
+    return provider.readyPromise.catch(function (error) {
+      expect(error).toBeInstanceOf(RuntimeError);
+    });
   });
 
   it("detects WebMercator tiling scheme", function () {

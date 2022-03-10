@@ -166,6 +166,7 @@ describe(
     });
 
     // Throws an extraneous promise through the texture loader which cannot be cleanly caught
+    // https://github.com/CesiumGS/cesium/issues/10178
     xit("rejects ready promise when texture fails to load", function () {
       const resource = Resource.createIfNeeded(boxTexturedGltfUrl);
       return resource.fetchJson().then(function (gltf) {
@@ -188,6 +189,7 @@ describe(
     });
 
     // Throws an extraneous promise through the texture loader which cannot be cleanly caught
+    // https://github.com/CesiumGS/cesium/issues/10178
     xit("rejects ready promise when external buffer fails to load", function () {
       const resource = Resource.createIfNeeded(boxTexturedGltfUrl);
       return resource.fetchJson().then(function (gltf) {

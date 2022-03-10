@@ -2390,6 +2390,7 @@ describe(
     });
 
     // Throws an extraneous promise through the texture loader which cannot be cleanly caught
+    // https://github.com/CesiumGS/cesium/issues/10178
     xit("rejects promise if glTF JSON fails to load", function () {
       const error = new Error("404 Not Found");
       spyOn(GltfJsonLoader.prototype, "_fetchGltf").and.returnValue(
@@ -2427,6 +2428,7 @@ describe(
     });
 
     // Throws an extraneous promise through the texture loader which cannot be cleanly caught
+    // https://github.com/CesiumGS/cesium/issues/10178
     xit("rejects promise if resource fails to load", function () {
       spyOn(Resource.prototype, "fetchImage").and.callFake(function () {
         const error = new Error("404 Not Found");

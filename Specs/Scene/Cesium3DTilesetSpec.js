@@ -258,6 +258,7 @@ describe(
     });
 
     // Throws several unhandled 404 errors
+    // https://github.com/CesiumGS/cesium/issues/10178
     xit("rejects readyPromise with invalid tileset JSON file", function () {
       spyOn(Resource._Implementations, "loadWithXhr").and.callFake(function (
         url,
@@ -587,6 +588,7 @@ describe(
     });
 
     // Throws several unhandled errors
+    // https://github.com/CesiumGS/cesium/issues/10178
     xit("requests tile with invalid magic", function () {
       const invalidMagicBuffer = Cesium3DTilesTester.generateBatchedTileBuffer({
         magic: [120, 120, 120, 120],
@@ -620,6 +622,7 @@ describe(
     });
 
     // Throws several unhandled 404 errors
+    // https://github.com/CesiumGS/cesium/issues/10178
     xit("handles failed tile requests", function () {
       viewRootOnly();
       options.url = tilesetUrl;
@@ -654,7 +657,9 @@ describe(
       });
     });
 
-    it("handles failed tile processing", function () {
+    // Throws several unhandled errors
+    // https://github.com/CesiumGS/cesium/issues/10178
+    xit("handles failed tile processing", function () {
       viewRootOnly();
       options.url = tilesetUrl;
       const tileset = scene.primitives.add(new Cesium3DTileset(options));
@@ -2440,6 +2445,7 @@ describe(
     });
 
     // Throws several unhandled 404 errors
+    // https://github.com/CesiumGS/cesium/issues/10178
     xit("tile failed event is raised", function () {
       viewNothing();
       const spyUpdate = jasmine.createSpy("listener");
@@ -2517,6 +2523,7 @@ describe(
     });
 
     // Throws error in release tests
+    // https://github.com/CesiumGS/cesium/issues/10178
     xit("destroys before tile finishes loading", function () {
       viewRootOnly();
       options.url = tilesetUrl;
@@ -4230,6 +4237,7 @@ describe(
     });
 
     // Throws several unhandled 404 errors
+    // https://github.com/CesiumGS/cesium/issues/10178
     xit("tile expires and request fails", function () {
       return Cesium3DTilesTester.loadTileset(scene, batchedExpirationUrl).then(
         function (tileset) {
@@ -4923,7 +4931,9 @@ describe(
       });
     });
 
-    it("cancels out-of-view tiles", function () {
+    // Cancelling a request throws an unhandled 404
+    // https://github.com/CesiumGS/cesium/issues/10178
+    xit("cancels out-of-view tiles", function () {
       viewNothing();
 
       return Cesium3DTilesTester.loadTileset(scene, tilesetUniform).then(
@@ -4983,6 +4993,8 @@ describe(
 
           expect(allSorted).toBe(true);
           expect(lastPriority).not.toEqual(requestedTilesInFlight[0]._priority); // Not all the same value
+
+          return Cesium3DTilesTester.waitForTilesLoaded(scene, tileset);
         }
       );
     });
@@ -5007,6 +5019,8 @@ describe(
           const requestedTilesInFlight = tileset._requestedTilesInFlight;
           expect(requestedTilesInFlight.length).toBe(1);
           expect(requestedTilesInFlight[0].priorityDeferred).toBe(true);
+
+          return Cesium3DTilesTester.waitForTilesLoaded(scene, tileset);
         }
       );
     });
@@ -5037,6 +5051,8 @@ describe(
             expect(tileset._requestedTilesInFlight[0].priorityDeferred).toBe(
               true
             );
+
+            return Cesium3DTilesTester.waitForTilesLoaded(scene, tileset);
           });
         }
       );
@@ -5062,6 +5078,7 @@ describe(
           });
           scene.renderForSpecs();
           expect(tileset._requestedTilesInFlight.length).toBeGreaterThan(0);
+          return Cesium3DTilesTester.waitForTilesLoaded(scene, tileset);
         }
       );
     });
@@ -5087,6 +5104,7 @@ describe(
           viewAllTiles();
           scene.renderForSpecs();
           expect(tileset._requestedTilesInFlight.length).toEqual(2);
+          return Cesium3DTilesTester.waitForTilesLoaded(scene, tileset);
         }
       );
     });

@@ -464,13 +464,15 @@ function initialize(content, arrayBuffer, byteOffset) {
     collectionOptions
   );
   content._modelInstanceCollection.readyPromise
-    .then(function (collection) {
-      collection.activeAnimations.addAll({
-        loop: ModelAnimationLoop.REPEAT,
-      });
-    })
     .catch(function () {
-      // The readyPromise failure is handled in modelInstanceCollection
+      // Any readyPromise failure is handled in modelInstanceCollection
+    })
+    .then(function (collection) {
+      if (content._modelInstanceCollection.ready) {
+        collection.activeAnimations.addAll({
+          loop: ModelAnimationLoop.REPEAT,
+        });
+      }
     });
 }
 

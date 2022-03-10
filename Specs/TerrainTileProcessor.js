@@ -1,8 +1,11 @@
-import { clone, defer } from "../Source/Cesium.js";
-import { Texture } from "../Source/Cesium.js";
-import { GlobeSurfaceTile } from "../Source/Cesium.js";
-import { ImageryLayer } from "../Source/Cesium.js";
-import { TerrainState } from "../Source/Cesium.js";
+import {
+  clone,
+  defer,
+  ImageryLayer,
+  GlobeSurfaceTile,
+  TerrainState,
+  Texture,
+} from "../Source/Cesium.js";
 
 function TerrainTileProcessor(
   frameState,

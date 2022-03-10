@@ -1,4 +1,5 @@
-import { defer, Ion } from "../../Source/Cesium.js";
+import { defer } from "../../Source/Cesium.js";
+import { Ion } from "../../Source/Cesium.js";
 import { IonResource } from "../../Source/Cesium.js";
 import { RequestErrorEvent } from "../../Source/Cesium.js";
 import { Resource } from "../../Source/Cesium.js";

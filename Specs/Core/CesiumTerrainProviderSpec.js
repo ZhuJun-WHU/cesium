@@ -1,4 +1,5 @@
-import { CesiumTerrainProvider, defer } from "../../Source/Cesium.js";
+import { CesiumTerrainProvider } from "../../Source/Cesium.js";
+import { defer } from "../../Source/Cesium.js";
 import { Ellipsoid } from "../../Source/Cesium.js";
 import { GeographicTilingScheme } from "../../Source/Cesium.js";
 import { getAbsoluteUri } from "../../Source/Cesium.js";

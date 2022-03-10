@@ -1,4 +1,5 @@
-import { DefaultProxy, defer } from "../../Source/Cesium.js";
+import { DefaultProxy } from "../../Source/Cesium.js";
+import { defer } from "../../Source/Cesium.js";
 import { GeographicTilingScheme } from "../../Source/Cesium.js";
 import { HeightmapTerrainData } from "../../Source/Cesium.js";
 import { Math as CesiumMath } from "../../Source/Cesium.js";

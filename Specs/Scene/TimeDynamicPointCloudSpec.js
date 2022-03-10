@@ -780,6 +780,7 @@ describe(
     });
 
     // Throws an un-catchable 404
+    // https://github.com/CesiumGS/cesium/issues/10178
     xit("frame failed event is raised from request failure", function () {
       const pointCloud = createTimeDynamicPointCloud();
       spyOn(Resource._Implementations, "loadWithXhr").and.callFake(function (
